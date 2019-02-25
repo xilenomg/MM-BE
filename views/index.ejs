@@ -1,0 +1,52 @@
+<%- include('./template/header.ejs') %>
+<div>
+  <h1>CPF tasks:</h1>
+  <form method="GET" id="cpfForm">
+    <div class="type-cpf">
+      <label>Type your CPF:</label><br />
+      <input type="text" name="cpf" id="cpf" maxlength="14" placeholder="Type your CPF" value="<%=result && result.cpfTyped%>" />
+    </div>
+    <h2>Actions</h2>
+    <div class="actions">
+      <div class="action">Search <input type="radio" name="action" value="search" <%=(result && result.type==='search'
+          ) || !result ? 'checked' : '' %> /></div>
+      <div class="action">Add <input type="radio" name="action" value="add" <%=(result && result.type==='add' ) ?
+          'checked' : '' %> /></div>
+      <div class="action">Delete <input type="radio" name="action" value="delete" <%=(result && result.type==='delete'
+          ) ? 'checked' : '' %> /></div>
+    </div>
+    <button type="submit" id="go">Go!</button>
+    <a href="/">Reset</a>
+  </form>
+  <div id="errorMessage" class="alert red" style="display: none;">
+    Wrong CPF
+  </div>
+  <div id="results">
+    <% if (result) {%>
+    <% if (result.type === 'search') { %>
+    <% if (result.cpfFound) {%>
+    <div class="alert red">BLOCK</div>
+    <% } else {%>
+    <div class="alert green">FREE</div>
+    <% } %>
+    <% }%>
+
+    <% if (result.type === 'add') { %>
+    <% if (result.cpfAdded) {%>
+    <div class="alert green">Added</div>
+    <% } else {%>
+    <div class="alert red">Already exists</div>
+    <% } %>
+    <% }%>
+
+    <% if (result.type === 'delete') { %>
+    <% if (result.cpfDeleted) {%>
+    <div class="alert red">Deleted</div>
+    <% } else {%>
+    <div class="alert green">Not available</div>
+    <% } %>
+    <% }%>
+    <% } %>
+  </div>
+</div>
+<%- include('./template/footer.ejs') %>

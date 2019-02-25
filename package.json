@@ -2,6 +2,9 @@
   "name": "maxmilhas-backend",
   "version": "1.0.0",
   "description": "Teste de desenvolviment backend MaxMilhas",
+  "repository": {
+    "url": "git://github.com/xilenomg/MM-BE.git"
+  },
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -10,6 +13,7 @@
   "author": "Luis Felipe Corrêa Pérez",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^2.6.1",
     "express": "^4.16.4"
   },
   "devDependencies": {
